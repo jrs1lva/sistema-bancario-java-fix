@@ -24,22 +24,18 @@ public class ContaCorrente extends Conta {
 
 		if (valor > (getSaldoTotal())) {
 			throw new IllegalArgumentException("O valor de saque deve ser menor ou igual a: " + getSaldoTotal());
-		}
-
-		if (valor <= 0) {
+		} else if (valor <= 0) {
 			throw new IllegalArgumentException("O valor de saque deve ser maior do que 0.");
-		}
-
-		if (valor > getSaldo() && valor < getSaldoTotal()) {
+		} else if (valor > getSaldo() && valor < getSaldoTotal()) {
+ 			double resto = (getSaldo() - valor);
 			setSaldo(0);
-			double resto = (valor - getSaldo());
 			setLimite(getLimite() + resto);
 			setSaldoTotal(limite);
 			extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
+		} else {
+			setSaldo(getSaldo() - valor);
+			extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
 		}
-		setSaldo(getSaldo() - valor);
-		extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
-
 	}
 
 	public double getLimite() {
@@ -60,21 +56,21 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public void mostrarComprovante(String operacao, Conta conta, double valor, Banco banco) {
-		System.out.println("===== COMPROVANTE =====\n");
+		System.out.println("\n===== COMPROVANTE =====\n");
 		System.out.println("Banco: " + banco.getNOME());
 		System.out.println("Operação: " + operacao);
-		System.out.printf("\nValor: R$ %.2f%n", valor);
+		System.out.printf("Valor: R$ %.2f%n", valor);
 		System.out.println("\n-------------------");
 		System.out.println("Nome: " + conta.getUsuario().getNome());
 		System.out.println("CPF: " + conta.getUsuario().getCPF());
 		System.out.println("Idade: " + Period.between(conta.getUsuario().getDataNascimento(), LocalDate.now()).getYears() + " Anos");
 		System.out.println("\n-------------------");
-		System.out.printf("\nSaldo Atual: %.2f%n", this.saldo);
+		System.out.printf("Saldo Atual: %.2f%n", this.saldo);
 		mostrarInfosEspecificas();
 	}
 
 	public void mostrarInfosEspecificas() {
-		System.out.printf("\nLimite disponível: R$ %.2f%n", limite);
+		System.out.printf("Limite disponível: R$ %.2f%n", limite);
 	};
 
 }

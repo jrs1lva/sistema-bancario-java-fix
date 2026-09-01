@@ -31,7 +31,7 @@ public abstract class Conta {
 	}
 	
 	public void mostrarExtrato() {
-		System.out.println("===== EXTRATO =====\n");
+		System.out.println("\n===== EXTRATO =====\n");
 
 		for (String transacao : extrato) {
 			System.out.println(transacao);

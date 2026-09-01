@@ -24,7 +24,7 @@ public class ContaPoupanca extends Conta{
 
 	@Override
 	public void mostrarComprovante(String operacao, Conta conta, double valor, Banco banco) {
-		System.out.println("===== COMPROVANTE =====\n");
+		System.out.println("\n===== COMPROVANTE =====\n");
 		System.out.println("Banco: " + banco.getNOME());
 		System.out.println("Operação: " + operacao);
 		System.out.printf("\nValor: R$ %.2f%n", valor);
