@@ -129,13 +129,14 @@ public class Menu {
 					
 					conta.depositar(valorDeposito);
 					pausar(1000, "\nProcessando Operação...");
-					System.out.printf("\nOperação realizada com sucesso!\nSaldo Atual: R$ %.2f \n", conta.getSaldo());
-					pausar(5000);
+					System.out.printf("\nOperação realizada com sucesso!");
+					conta.mostrarComprovante("Depósito", conta, valorDeposito, banco);
+					pausar(5000); //valor depositado, nome completo de quem fez o deposito
 					break;
 				} catch (IllegalArgumentException e) {
 					System.err.println("\n[FALHA NA OPERAÇÃO] " + e.getMessage());
 					pausar(5000);
-					break;
+					break; 
 				}
 				
 				
@@ -146,7 +147,8 @@ public class Menu {
 					
 					conta.sacar(valorSaque);
 					pausar(1000, "\nProcessando Operação...");
-					System.out.printf("\nOperação realizada com sucesso!\nSaldo Atual: R$ %.2f\nLimite: R$ %.2f", conta.getSaldo());
+					System.out.printf("\nOperação realizada com sucesso!");
+					conta.mostrarComprovante("Saque", conta, valorSaque, banco);
 					pausar(5000);
 					break;
 				} catch (IllegalArgumentException e) {
