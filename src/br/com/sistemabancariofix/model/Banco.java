@@ -1,4 +1,4 @@
-package br.com.sistemabancariofix;
+package br.com.sistemabancariofix.model;
 
 import java.util.ArrayList;
 import java.util.List;

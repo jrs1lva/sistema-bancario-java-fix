@@ -1,4 +1,4 @@
-package br.com.sistemabancariofix;
+package br.com.sistemabancariofix.model;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -34,6 +34,26 @@ public class ContaPoupanca extends Conta{
 		System.out.println("Idade: " + Period.between(conta.getUsuario().getDataNascimento(), LocalDate.now()).getYears() + " Anos");
 		System.out.println("\n-------------------");
 		System.out.printf("\nSaldo Atual: %.2f%n", this.saldo);
+	}
+	
+	public void renderJuros() {
+	    double rendimento = getSaldo() * 0.02;
+	    setSaldo(getSaldo() + rendimento);
+	    extrato.add(String.format("Rendimento de Juros (2%%): +R$ %.2f\nSaldo: R$ %.2f", rendimento, getSaldo()));
+	}
+
+	@Override
+	public boolean depositar(double valor) {
+		
+		if (valor <= 0) {
+			throw new IllegalArgumentException("O valor depositado deve ser maior do que 0.");
+		}
+		
+		setSaldo(getSaldo() + valor);
+		renderJuros();
+		
+		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
+		return true;
 	}
 
 }

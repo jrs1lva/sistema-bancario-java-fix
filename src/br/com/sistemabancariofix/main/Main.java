@@ -1,4 +1,7 @@
-package br.com.sistemabancariofix;
+package br.com.sistemabancariofix.main;
+
+import br.com.sistemabancariofix.model.Banco;
+import br.com.sistemabancariofix.view.Menu;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package br.com.sistemabancariofix;
+package br.com.sistemabancariofix.model;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -26,7 +26,7 @@ public class ContaCorrente extends Conta {
 			throw new IllegalArgumentException("O valor de saque deve ser menor ou igual a: " + getSaldoTotal());
 		} else if (valor <= 0) {
 			throw new IllegalArgumentException("O valor de saque deve ser maior do que 0.");
-		} else if (valor > getSaldo() && valor < getSaldoTotal()) {
+		} else if (valor > getSaldo() && valor <= getSaldoTotal()) {
  			double resto = (getSaldo() - valor);
 			setSaldo(0);
 			setLimite(getLimite() + resto);
@@ -71,6 +71,19 @@ public class ContaCorrente extends Conta {
 
 	public void mostrarInfosEspecificas() {
 		System.out.printf("Limite disponível: R$ %.2f%n", limite);
-	};
+	}
+
+	@Override
+	public boolean depositar(double valor) {
+		
+		if (valor <= 0) {
+			throw new IllegalArgumentException("O valor depositado deve ser maior do que 0.");
+		}
+		
+		setSaldo(getSaldo() + valor);
+		
+		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
+		return true;
+	}
 
 }

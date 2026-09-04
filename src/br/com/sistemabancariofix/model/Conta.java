@@ -1,4 +1,4 @@
-package br.com.sistemabancariofix;
+package br.com.sistemabancariofix.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +19,7 @@ public abstract class Conta {
 	
 	public abstract void sacar(double valor);
 	
-	public boolean depositar(double valor) {
-		if (valor <= 0) {
-			throw new IllegalArgumentException("O valor depositado deve ser maior do que 0.");
-		}
-		
-		setSaldo(getSaldo() + valor);
-		
-		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
-		return true;
-	}
+	public abstract boolean depositar(double valor);
 	
 	public void mostrarExtrato() {
 		System.out.println("\n===== EXTRATO =====\n");
