@@ -10,7 +10,7 @@ public class ContaPoupanca extends Conta{
 	}
 
 	@Override
-	public void sacar(double valor) {
+	public boolean sacar(double valor) {
 		if (valor <= 0) {
 			throw new IllegalArgumentException("O valor de saque deve ser maior do que 0.");
 		}
@@ -20,6 +20,8 @@ public class ContaPoupanca extends Conta{
 		
 		setSaldo(this.getSaldo() - valor);
 		extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
+		
+		return true;
 	}
 
 	@Override

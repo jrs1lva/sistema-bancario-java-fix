@@ -17,7 +17,7 @@ public abstract class Conta {
 		this.extrato = new ArrayList<>();
 	}
 	
-	public abstract void sacar(double valor);
+	public abstract boolean sacar(double valor);
 	
 	public abstract boolean depositar(double valor);
 	

@@ -20,7 +20,7 @@ public class ContaCorrente extends Conta {
 	// (resto = saldo - valor) + limite
 
 	@Override
-	public void sacar(double valor) {
+	public boolean sacar(double valor) {
 
 		if (valor > (getSaldoTotal())) {
 			throw new IllegalArgumentException("O valor de saque deve ser menor ou igual a: " + getSaldoTotal());
@@ -32,9 +32,11 @@ public class ContaCorrente extends Conta {
 			setLimite(getLimite() + resto);
 			setSaldoTotal(limite);
 			extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
+			return true;
 		} else {
 			setSaldo(getSaldo() - valor);
 			extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
+			return true;
 		}
 	}
 
