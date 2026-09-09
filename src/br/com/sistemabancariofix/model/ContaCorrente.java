@@ -77,14 +77,26 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public boolean depositar(double valor) {
-		
 		if (valor <= 0) {
 			throw new IllegalArgumentException("O valor depositado deve ser maior do que 0.");
 		}
 		
-		setSaldo(getSaldo() + valor);
+		//se o limite for menor que 500, limite += valor, se limite > 500, limite = 500 e resto vai para saldo se o valor for menor que 500 
+		if (getLimite() < 500) {
+			setLimite(getLimite() + valor);
+			
+			if (getLimite() > 500) {
+				double resto = getLimite() - 500;
+				setLimite(500);
+				setSaldo(resto);
+				
+			}
+		} else {
+			setSaldo(getSaldo() + valor);
+		}
 		
-		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
+		setSaldoTotal(getLimite() + getSaldo());
+		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
 		return true;
 	}
 

@@ -18,12 +18,13 @@ public class Banco {
 		this.contas = new ArrayList<Conta>();
 	}
 	
-    public void cadastrarUsuario(Usuario usuario) {
+    public boolean cadastrarUsuario(Usuario usuario) {
     	if (existeUsuario(usuario.getCPF())) {
     		throw new IllegalArgumentException("[ERRO] CPF já cadastrado!");
-    	} else {
-    		usuarios.add(usuario);
     	}
+    	
+    	usuarios.add(usuario);
+    	return true;
     }
 	
     public Conta criarConta(String cpf, Tipo tipo) {
