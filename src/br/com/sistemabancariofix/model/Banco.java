@@ -47,7 +47,6 @@ public class Banco {
     	return conta;
     }
     
-    
     // alterar metodos com lista utilizando comandos sql nas classes DAO
     
     public boolean existeUsuario(String cpf) {
@@ -74,24 +73,32 @@ public class Banco {
 		} return null;
     }
     
-    public void listarUsuarios() {
-		for (Usuario usuario : this.usuarios) {
-			System.out.println(usuario.getNome());
-			System.out.println(usuario.getApelido());
-			System.out.println(usuario.getCPF());
-			System.out.println(usuario.getIdade());
-			System.out.println();
-		}
+    public List<Usuario> listarUsuarios() {
+    	return this.usuarios;
+    	
+//    	if (this.usuarios != null) {
+//    		for (Usuario usuario : this.usuarios) {
+//    			System.out.println(usuario.getNome());
+//    			System.out.println(usuario.getApelido());
+//    			System.out.println(usuario.getCPF());
+//    			System.out.println(usuario.getIdade());
+//    			System.out.println();
+//    		}
+//    		return usuarios;
+//    	}
+//    	return null;
     }
 	
-    public void listarContas() {
-    	for (Conta conta : contas) {
-			System.out.println(conta.getUsuario().getNome());
-			System.out.println(conta.getId());
-			System.out.println(conta.getClass().getName());
-			System.out.println(conta.getSaldo());
-			System.out.println();
-		}
+    public List<Conta> listarContas() {
+    	return this.contas;
+    	
+//    	for (Conta conta : contas) {
+//			System.out.println(conta.getUsuario().getNome());
+//			System.out.println(conta.getId());
+//			System.out.println(conta.getClass().getName());
+//			System.out.println(conta.getSaldo());
+//			System.out.println();
+//		}
     }
 
 	public String getNOME() {
