@@ -8,8 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,12 +29,24 @@ public class BancoTest {
 	private Conta conta;
 	private Banco banco;
 	
+	private final PrintStream saidaPadrao = System.out;
+    private final ByteArrayOutputStream fluxoSaida = new ByteArrayOutputStream();
+	
 	@BeforeEach
 	public void setUp() {
 		this.banco = new Banco("Bradesco", "4002");
 		LocalDate data = LocalDate.now().minusYears(22);
 		this.usuario = new Usuario("Adailton", "Jr", data, "86431700546");
 		this.conta = new ContaCorrente(usuario);
+		
+		// Redireciona o System.out para a nossa variável em memória antes do teste
+		System.setOut(new PrintStream(fluxoSaida));
+	}
+			
+	@AfterEach
+	public void tearDown() {
+	// Restaura o console para o estado normal após o teste
+		System.setOut(saidaPadrao);
 	}
 	
 	@Test
@@ -207,6 +222,11 @@ public class BancoTest {
 		assertEquals(0, banco.listarContas().size());
 		
 		assertFalse(banco.listarContas().contains(conta));
+	}
+	
+	@Test
+	public void deveMostrarDetalhesDoBanco() {
+		assertEquals("Nome do Banco:Bradesco\n Agência:4002", banco.detalhesDoBanco());
 	}
 	
  }
