@@ -29,7 +29,7 @@ Um sistema bancário robusto desenvolvido em **Java**, projetado para simular op
 
 1. **Clone o repositório para a sua máquina:**
    ```bash
-   git clone [https://github.com/jrs1lva/sistema-bancario-java-fix.git](https://github.com/jrs1lva/sistema-bancario-java-fix.git)
+   git clone https://github.com/jrs1lva/sistema-bancario-java-fix.git
    ```
 2. **Importe o projeto** na sua IDE de preferência (Eclipse, IntelliJ IDEA, VS Code).
 3. **Execute a aplicação** rodando a classe principal do projeto para inicializar o `Menu` no terminal.
