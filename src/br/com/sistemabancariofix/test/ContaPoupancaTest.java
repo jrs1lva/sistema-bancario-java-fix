@@ -96,4 +96,23 @@ public class ContaPoupancaTest {
         assertTrue(saidaDoConsole.contains("CPF: 86431700546"));
         assertTrue(saidaDoConsole.contains("Idade: 22 Anos"));
 	}
+	
+	@Test
+	public void deveMostrarExtrato() {
+		conta.depositar(100.0); // O saldo vai ficar 102.0 devido ao rendimento de juros
+
+        // Act
+        conta.mostrarExtrato();
+
+        // Assert
+        String saidaDoConsole = fluxoSaida.toString();
+        
+        // Verifica se as informações vitais foram impressas na tela
+        assertTrue(saidaDoConsole.contains("===== EXTRATO ====="));
+        assertTrue(saidaDoConsole.contains("Depósito: R$ 100,00"));
+        assertTrue(saidaDoConsole.contains("Saldo: R$ 102,00"));
+        assertTrue(saidaDoConsole.contains("-------------------"));
+        assertTrue(saidaDoConsole.contains("Saldo Atual: R$ 102,00"));
+	}
+
 }

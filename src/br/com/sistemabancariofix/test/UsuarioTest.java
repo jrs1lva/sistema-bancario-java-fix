@@ -1,6 +1,9 @@
 package br.com.sistemabancariofix.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -10,6 +13,38 @@ import org.junit.jupiter.api.Test;
 import br.com.sistemabancariofix.model.Usuario;
 
 public class UsuarioTest {
+	
+	@Test
+	public void deveInstanciarUsuarioComSucesso() {
+		LocalDate data = LocalDate.now().minusYears(22);
+		Usuario usuario = new Usuario("Adailton", "jr", data, "86431700546");
+		
+		assertNotNull(usuario);
+		assertEquals("Adailton", usuario.getNome());
+		assertEquals(22, usuario.getIdade());
+	}
+	
+	@Test
+	public void naoDeveInstanciarUsuarioMenorDeIdade() {
+		LocalDate dataInvalida = LocalDate.now().minusYears(17);
+		
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Usuario("Adailton", "Jr", dataInvalida, "86431700546");
+        });
+        
+        assertEquals("É necessário ser maior de idade para criar uma conta", exception.getMessage());
+	}
+	
+	@Test
+	public void naoDeveInstanciarUsuarioComCpfInvalido() {
+		LocalDate data = LocalDate.now().minusYears(22);
+		
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Usuario("Adailton", "Jr", data, "40028922572");
+        });
+		
+		assertEquals("Erro fatal: Tentativa de instanciar Usuario com CPF inválido.", exception.getMessage());
+	}
 	
 	@Test
 	public void deveValidarCpfCorretoEIncorreto() {

@@ -23,7 +23,7 @@ public class ContaCorrente extends Conta {
 	public boolean sacar(double valor) {
 
 		if (valor > (getSaldoTotal())) {
-			throw new IllegalArgumentException("O valor de saque deve ser menor ou igual a: " + getSaldoTotal());
+			throw new IllegalArgumentException("Saldo insuficiente.");
 		} else if (valor <= 0) {
 			throw new IllegalArgumentException("O valor de saque deve ser maior do que 0.");
 		} else if (valor > getSaldo() && valor <= getSaldoTotal()) {

@@ -29,7 +29,7 @@ public abstract class Conta {
 		}
 		
 		System.out.println("\n-------------------");
-		System.out.printf("Saldo Atual: %.2f%n", this.saldo);
+		System.out.printf("Saldo Atual: R$ %.2f%n", this.saldo);
 	}
 	
 	public void mostrarInfosEspecificas() {};
