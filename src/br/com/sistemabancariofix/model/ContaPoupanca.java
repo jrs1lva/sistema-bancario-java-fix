@@ -15,11 +15,11 @@ public class ContaPoupanca extends Conta{
 			throw new IllegalArgumentException("O valor de saque deve ser maior do que 0.");
 		}
 		if (valor > getSaldo()) {
-			throw new IllegalArgumentException("O valor de saque deve ser menor ou igual ao saldo disponível.");
+			throw new IllegalArgumentException("Saldo insuficiente.");
 		}
 		
 		setSaldo(this.getSaldo() - valor);
-		extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
+		extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\n", valor, saldo));
 		
 		return true;
 	}
@@ -35,13 +35,13 @@ public class ContaPoupanca extends Conta{
 		System.out.println("CPF: " + conta.getUsuario().getCPF());
 		System.out.println("Idade: " + Period.between(conta.getUsuario().getDataNascimento(), LocalDate.now()).getYears() + " Anos");
 		System.out.println("\n-------------------");
-		System.out.printf("\nSaldo Atual: %.2f%n", this.saldo);
+		System.out.printf("Saldo Atual: %.2f%n", this.saldo);
 	}
 	
 	public void renderJuros() {
 	    double rendimento = getSaldo() * 0.02;
 	    setSaldo(getSaldo() + rendimento);
-	    extrato.add(String.format("Rendimento de Juros (2%%): +R$ %.2f\nSaldo: R$ %.2f", rendimento, getSaldo()));
+	    extrato.add(String.format("Rendimento de Juros (2%%): + R$ %.2f", rendimento, getSaldo()));
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class ContaPoupanca extends Conta{
 		
 		setSaldo(getSaldo() + valor);
 		renderJuros();
+		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f\n", valor, saldo));
 		
-		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f", valor, saldo));
 		return true;
 	}
 

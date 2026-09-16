@@ -28,7 +28,7 @@ public abstract class Conta {
 			System.out.println(transacao);
 		}
 		
-		System.out.println("\n-------------------");
+		System.out.println("-------------------");
 		System.out.printf("Saldo Atual: R$ %.2f%n", this.saldo);
 	}
 	

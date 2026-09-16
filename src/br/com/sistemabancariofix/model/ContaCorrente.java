@@ -31,13 +31,12 @@ public class ContaCorrente extends Conta {
 			setSaldo(0);
 			setLimite(getLimite() + resto);
 			setSaldoTotal(limite);
-			extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
-			return true;
 		} else {
 			setSaldo(getSaldo() - valor);
-			extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
-			return true;
 		}
+		
+		extrato.add(String.format("Saque: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f\n", valor, saldo, limite));
+		return true;
 	}
 
 	public double getLimite() {
@@ -96,7 +95,7 @@ public class ContaCorrente extends Conta {
 		}
 		
 		setSaldoTotal(getLimite() + getSaldo());
-		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f", valor, saldo, limite));
+		extrato.add(String.format("Depósito: R$ %.2f\nSaldo: R$ %.2f\nLimite: R$ %.2f\n", valor, saldo, limite));
 		return true;
 	}
 

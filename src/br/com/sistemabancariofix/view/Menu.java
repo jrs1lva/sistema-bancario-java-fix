@@ -34,14 +34,14 @@ public class Menu {
 	private Usuario cadastrarUsuario(Banco banco) {
 		System.out.println("Olá, seja bem vindo ao Banco " + banco.getNOME());
 		ConsoleUtils.pausar(500);
-		System.out.println("\nPara começar, nos informe seus dados pessoais");
+		System.out.println("Para começar, nos informe seus dados pessoais\n");
 		ConsoleUtils.pausar(500);
 
-		System.out.print("\nNome completo: ");
+		System.out.print("Nome completo: ");
 		String nome = scanner.nextLine();
 		ConsoleUtils.pausar(500);
 
-		System.out.print("\nPrefere ser chamado de: ");
+		System.out.print("Prefere ser chamado de: ");
 		String apelido = scanner.nextLine();
 		ConsoleUtils.pausar(500);
 
@@ -50,7 +50,7 @@ public class Menu {
 		boolean dataValida = false;
 
 		while (!dataValida) {
-			System.out.print("\nData de nascimento (dd/MM/yyyy): ");
+			System.out.print("Data de nascimento (dd/MM/yyyy): ");
 			String data = scanner.nextLine();
 
 			try {
@@ -73,7 +73,7 @@ public class Menu {
 		boolean cpfValido = false;
 
 		while (!cpfValido) {
-			System.out.print("\nCPF: ");
+			System.out.print("CPF: ");
 			cpf = scanner.nextLine();
 
 			try {
@@ -105,12 +105,12 @@ public class Menu {
 
 			case 1:
 				tipo = Tipo.CORRENTE;
-				ConsoleUtils.pausar(1000,"Processando...");
+				ConsoleUtils.pausar(1000,"\nProcessando...");
 				break;
 
 			case 2:
 				tipo = Tipo.POUPANCA;
-				ConsoleUtils.pausar(1000,"Processando...");
+				ConsoleUtils.pausar(1000,"\nProcessando...");
 				break;
 
 			default:
@@ -126,13 +126,10 @@ public class Menu {
 	public void menuPrincipal(Conta conta, Banco banco) {
 		System.out.println("\nParabéns por efetuar seu cadastro no banco, " + conta.getUsuario().getApelido());
 		int opcao;
-
-		ConsoleUtils.pausar(2000,"Processando...");
-
+		
+		ConsoleUtils.pausar(1000);
+		
 		do {
-			ConsoleUtils.limparTela();
-			
-			
 			System.out.print("\nQual funcionalidade deseja utilizar?\n[1] Depositar | [2] Sacar | [3] Mostrar Extrato | [4] Encerrar aplicativo\n\n=> ");
 			opcao = scanner.nextInt();
 			ConsoleUtils.pausar(1000);
@@ -145,7 +142,7 @@ public class Menu {
 
 					conta.depositar(valorDeposito);
 					ConsoleUtils.pausar(1000,"Processando...");
-					System.out.printf("\nOperação realizada com sucesso!");
+					System.out.printf("\nOperação realizada com sucesso!\n");
 					conta.mostrarComprovante("Depósito", conta, valorDeposito, banco);
 					ConsoleUtils.pausar(5000);
 				} catch (IllegalArgumentException e) {
@@ -160,7 +157,7 @@ public class Menu {
 
 					conta.sacar(valorSaque);
 					ConsoleUtils.pausar(1000,"Processando...");
-					System.out.printf("\nOperação realizada com sucesso!");
+					System.out.printf("\nOperação realizada com sucesso!\n");
 					conta.mostrarComprovante("Saque", conta, valorSaque, banco);
 					ConsoleUtils.pausar(5000);
 				} catch (IllegalArgumentException e) {
